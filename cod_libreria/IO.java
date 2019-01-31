@@ -7,7 +7,10 @@ import javax.swing.JOptionPane;
  *
  * @author emendezduran
  */
-public class IO {
+public abstract class IO implements Interface {
+
+    @Override
+    public abstract void mostrar(String msg);
 
  /**
  *  El metodo recibe un mensaje y lo muestra por consola
@@ -15,18 +18,29 @@ public class IO {
  * @param msg Mensaje tipo String que recibe el metodo  
  * 
  */
-    public static void output(String msg) {
-        System.out.println(msg);
-    }
+    enum Tipo {
+        CONSOLA, VENTANA
+    };
+
     
- /**
- *  El metodo recibe un titulo y un mensaje y lo muestra en una ventana
- *
- * @param titulo Esta variable tipo String establece el titulo de la ventana 
- * @param msg Esta variable tipo String establece el mensaje que saldra en la ventana
- */
-    public static void output(String titulo, String msg) {
-        JOptionPane.showInputDialog(null, msg, titulo, 0);
+    public static IO crearOutput(Tipo tipo) {
+
+        IO OutputCreado;
+        switch (tipo) {
+            // creamos un dialogo de consola
+            case CONSOLA:
+                OutputCreado = new OutputCons();
+                break;
+            // creamos un dialogo de ventana
+            case VENTANA:
+                OutputCreado = new OutputWin();
+                break;
+            default:
+                OutputCreado = null;
+        }
+
+        return OutputCreado;
+
     }
 
 /**

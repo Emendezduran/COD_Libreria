@@ -16,7 +16,12 @@ public class COD_Libreria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        IO dialogoConsola = IO.crearOutput(IO.Tipo.CONSOLA);
+        dialogoConsola.mostrar("Hola consola");
+        
+        IO dialogoVentana = IO.crearOutput(IO.Tipo.VENTANA);
+        dialogoConsola.mostrar("Hola Ventana");
+        
     }
     
 }
